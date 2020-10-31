@@ -19,7 +19,7 @@ function doPost (e) {
     var template = DriveApp.getFileById(lang === "ja" ? TEMPLATE_JA : TEMPLATE_EN);
     // 複製
     var root = DriveApp.getFolderById(ROOT_FOLDER);
-    var name = "hoge";
+    var name = "Vote! : " + getDateString();
     var copy = template.makeCopy(name, root);
     // --
     var message = lang === "ja" ? "作成しました!" : "Done!";
@@ -39,4 +39,11 @@ function sendMessage (answer) {
         "payload" : payload
     };
     UrlFetchApp.fetch("https://hooks.slack.com/services/" + SLACK_ID, options);
+}
+
+// 日時文字
+function getDateString() {
+    const date = new Date();
+    return date.getFullYear() + "_" + (date.getMonth() + 1) + date.getDate() +
+        "_" + date.getHours() + date.getMinutes() + date.getSeconds();
 }
