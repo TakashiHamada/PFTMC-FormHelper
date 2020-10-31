@@ -1,8 +1,11 @@
 function doPost (e) {
     // 記録
+    var log_ss = SpreadsheetApp.openById(LOG_ID).getSheetByName("Log");
+    var param = e.parameter;
+    log_ss.appendRow([param.timestamp, param.user_name, param.text]);
     // --
     // 言語の決定
-    var text = e.parameter.text;
+    var text = param.text;
     var lang = -1 !== text.indexOf("フォーム作成") ? "ja" 
         : -1 !== text.indexOf("MAKE FORM") ? "en" 
             : null;
