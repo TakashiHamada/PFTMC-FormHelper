@@ -24,10 +24,14 @@ function doPost (e) {
     var root = DriveApp.getFolderById(ROOT_FOLDER);
     var name = "Vote! : " + getDateString();
     var copy = template.makeCopy(name, root);
+    copy.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.EDIT);
     // --
+    // メッセージ作成
     var message = lang === "ja" ? "作成しました!" : "Done!";
-    var url = copy.getUrl();
-    sendMessage(message + "\n<" + url + ">");
+    var form = FormApp.openById(copy.getId());
+    var edit = "\n[edit]\n<" + form.getEditUrl() + ">";
+    var view = "\n[view]\n<" + form.getPublishedUrl() + ">";
+    sendMessage(message +"\n" + edit + "\n" + view);
 }
 
 // 送信部
