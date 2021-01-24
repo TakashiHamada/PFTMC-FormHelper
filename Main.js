@@ -29,9 +29,9 @@ function doPost (e) {
     // メッセージ作成
     var message = lang === "ja" ? "作成しました!" : "Done!";
     var form = FormApp.openById(copy.getId());
-    var edit = "[edit]<" + form.getEditUrl() + ">";
-    var view = "[view]<" + form.getPublishedUrl() + ">";
-    sendMessage(message + "\n" + edit + "\n" + view);
+    var edit = "\n[edit]\n<" + form.getEditUrl() + ">";
+    var view = "\n[view]\n<" + form.getPublishedUrl() + ">";
+    sendMessage(message +"\n" + edit + "\n" + view);
 }
 
 // 送信部
