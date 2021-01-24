@@ -28,8 +28,9 @@ function doPost (e) {
     // --
     // メッセージ作成
     var message = lang === "ja" ? "作成しました!" : "Done!";
-    var edit = "[edit]<" + copy.getEditUrl() + ">";
-    var view = "[view]<" + copy.getPublishedUrl() + ">";
+    var form = FormApp.openById(copy.getId());
+    var edit = "[edit]<" + form.getEditUrl() + ">";
+    var view = "[view]<" + form.getPublishedUrl() + ">";
     sendMessage(message + "\n" + edit + "\n" + view);
 }
 
